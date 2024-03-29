@@ -2,7 +2,6 @@ import * as dotenv from 'dotenv'
 import { z } from 'zod'
 import { CONSTANT } from '../constant'
 
-
 dotenv.config({
   path: '.env',
 })

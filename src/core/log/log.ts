@@ -1,6 +1,5 @@
 import winston from 'winston'
 import { LOGGER } from '../constant'
-
 const logFormat = winston.format.combine(
   winston.format.timestamp({ format: LOGGER.LOG_DATE }),
   winston.format.printf(({ level, message, timestamp }) => {
