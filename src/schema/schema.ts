@@ -12,7 +12,6 @@ enum OtpType {
   FORGOT = 'FORGOT',
 }
 
-
 // Mongoose User Schema
 interface UserDoc extends Document {
   name: string
@@ -30,7 +29,7 @@ interface UserDoc extends Document {
   otps: mongoose.Types.Array<OtpDoc['_id']>
 }
 
-const userSchema = new Schema<UserDoc>({
+export const userSchema = new Schema<UserDoc>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   isEmailVerified: { type: Boolean, default: false },
@@ -77,7 +76,7 @@ interface ChurchDoc extends Document {
   createdBy: UserDoc['_id']
 }
 
-const churchSchema = new Schema<ChurchDoc>({
+export const churchSchema = new Schema<ChurchDoc>({
   name: { type: String, required: true },
   address: { type: String },
   city: { type: String },
@@ -87,7 +86,7 @@ const churchSchema = new Schema<ChurchDoc>({
   description: { type: String },
   imageUrl: { type: String },
   events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
-  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: false },
 })
 
 const Church = mongoose.model<ChurchDoc>('Church', churchSchema)
@@ -103,7 +102,7 @@ interface EventDoc extends Document {
   createdBy: UserDoc['_id']
 }
 
-const eventSchema = new Schema<EventDoc>({
+export const eventSchema = new Schema<EventDoc>({
   name: { type: String, required: true },
   address: { type: String },
   eventDate: { type: Date, required: true },

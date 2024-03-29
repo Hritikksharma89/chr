@@ -4,7 +4,9 @@ import { CONSTANT, ROUTE } from './constant'
 import { logger } from './log/log'
 import { errorHandler } from './middleware/error.middleware'
 import mongoose from 'mongoose'
-import userRoute from './controller/user.controller'
+import userRoute from './controller/users/user.route'
+import churchRoute from './controller/church/church.route'
+import authRoute from './controller/authentication/auth.route'
 
 const app: Application = express()
 const PORT = env.PORT
@@ -24,6 +26,8 @@ mongoose
 
 // Define routes
 app.use('/users', userRoute)
+app.use('/church', churchRoute)
+app.use('/auth', authRoute)
 
 // Error handling middleware
 app.use(errorHandler)
